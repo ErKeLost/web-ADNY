@@ -19,17 +19,23 @@ export default {
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper, {
       scrollX :true,
+      scrollY :true,
       probeType:3,
       mouseWheel: true, //开启鼠标滚轮
       disableMouse: false, //启用鼠标拖动
       disableTouch: false, //启用手指触摸
+      pullUpLoad:true
     });
     setTimeout(() => {
       // console.log(this.scroll.maxScrollY);
 
       this.scroll.refresh();
       // console.log(this.scroll.maxScrollY);
-    }, 0);
+    }, 10);
+    this.scroll.on('pullingUp',() => {
+      console.log("aaa");
+      this.scroll.refresh()
+    })
   },
 };
 </script>

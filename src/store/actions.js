@@ -8,7 +8,8 @@ import {
   SET_CUR_TIME,
   SET_INDEX,
   COMMENT_DATA,
-  COMMENT_MV
+  COMMENT_MV,
+  SEA
 } from './mutations-type'
 import{
   coData
@@ -23,6 +24,9 @@ import {
   getMvComment
 } from '../api/index'
 export default {
+  setSea({commit},flag){
+    commit(SEA,flag)
+  },
   setFullPlayer({
     commit
   }, flag) {

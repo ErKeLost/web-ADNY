@@ -23,15 +23,15 @@
 
 <script>
 import { mapGetters } from "vuex";
-import gsap from 'gsap'
-import BetterScroll from '../BetterScroll'
+import gsap from "gsap";
+import BetterScroll from "../BetterScroll";
 import { TimelineLite } from "gsap";
 import { mapActions, mapMutations } from "vuex";
 
 export default {
   name: "Comment",
-  components:{
-    BetterScroll
+  components: {
+    BetterScroll,
   },
   computed: {
     ...mapGetters(["isComment", "currentSong"]),
@@ -63,17 +63,17 @@ export default {
   position: absolute;
   z-index: -99;
   top: 0;
-  opacity: .8;
-  // filter: blur(10px);
+  opacity: 0.8;
+  filter: blur(10px);
   object-fit: cover;
   object-position: center center;
 }
-.all::-webkit-scrollbar{
+.all::-webkit-scrollbar {
   display: none;
 }
 .all {
-  border: 1px solid #bbb;
-  color: rgb(136, 136, 136);
+  // border: 1px solid rgb(102, 102, 102);
+  color: rgb(219, 219, 219);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -82,7 +82,9 @@ export default {
   z-index: 999999;
   // opacity: .5;
   // background: url('../../assets/img/996.jpg');
-  background: rgb(39, 39, 39);
+  // box-shadow: 1px 1px 1px rgb(255, 255, 255), 1px 1px 10px rgb(255, 255, 255), 1px 1px 1px #bbb,
+  //   1px 1px 1px rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
   // filter: blur(10px);
   // color: black;
   .top {
@@ -118,5 +120,8 @@ export default {
       }
     }
   }
+}
+.iconfont {
+  color: white;
 }
 </style>

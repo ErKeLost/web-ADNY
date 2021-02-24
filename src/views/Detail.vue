@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <BetterScroll>
-      <SubHeader :title="playlist.name"></SubHeader>
+      <SubHeader class="ij" :title="playlist.name"></SubHeader>
       <DetailTop
         :path="playlist.coverImgUrl"
         :count="playlist.playCount"
@@ -135,5 +135,9 @@ export default {
   z-index: 9999;
   background: url('../assets/img/2.jpg') center;
   color: white;
+}
+.ij{
+  // position: relative;
+  // position: fixed;
 }
 </style>

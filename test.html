@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let a = {
+      name: "erkelost",
+      age: 20,
+      sex: 1
+    }
+    let b = []
+    console.log(Object.keys(a), Object.values(a), Object.entries(a));
+    Object.entries(a).forEach(element => {
+      element.forEach((i) => {
+        console.log(i);
+        b.push(i)
+      });
+    });
+    console.log(b);
+    let lang = 2
+    let length = b.length
+    let times = length / lang
+    let obj = []
+    for (let i = 0; i < times; i++) {
+      obj.push(b.slice(i * lang, i * lang + lang))
+    }
+    console.log(obj);
+    let ko = {
+      name: "",
+      age: "",
+      sex: ""
+    }
+    console.log(ko);
+    let defaultname = ["erkelost", 9999, 1]
+    Object.keys(ko).forEach((i) => {
+      console.log(i);
+      Object.defineProperty(ko, i, {
+        get() {
+          return defaultname
+        },
+        set(value) {
+          defaultname = value
+        }
+      })
+    })
+    ko.name = "adny"
+    console.log(ko.age);
+    console.log(ko.sex);
+    let c = 123;
+    console.log(c.toString());
+    const randomid = (o) => Math.random().toString(36).substr(3, o)
+    console.log(randomid(10));
+    const StartScore = rate => "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
+    const start = StartScore(3);
+    let e = Math.floor(Math.random() * 5)
+    console.log(StartScore(e));
+    // start => "★★★"
+  </script>
+</body>
+
+</html>

@@ -51,7 +51,7 @@ export const getDefaultSearch = (data) => network.get('search/default',data)
 //云村热评
 export const getCloudComment = (data) => network.get('comment/hotwall/list',data)
 //mv评论
-export const getMvComment = (data) => network.get('comment/mv',data)
+export const getMvComment = (data) => network.get('comment/mv?limit=100',data)
 //每日推荐歌单
 export const getSong = (data) => network.get('recommend/resource',data)
 

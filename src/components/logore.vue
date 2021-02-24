@@ -3,13 +3,13 @@
     <div v-show="online === null" class="qwe">
       <div class="poi">
         <h3>为你推荐 (需要登录)</h3>
-      <span>查看更多</span>
+        <span>查看更多</span>
       </div>
       <!-- <span>登录网易云音乐，可以享受无限收藏的乐趣，并且无限同步到手机</span>
       <p>每日推荐歌单</p> -->
-      <img src="../assets/img/669.png" alt="" @click="go()">
+      <img src="../assets/img/669.png" alt="" @click="go()" />
     </div>
-    <div class="personalized-top"  v-show="online !== null">
+    <div class="personalized-top" v-show="online !== null">
       <h3>为你推荐</h3>
       <span>查看更多</span>
     </div>
@@ -36,78 +36,80 @@
 </template>
 
 <script>
-import {getSong} from '../api/index'
+import { getSong } from "../api/index";
 export default {
   name: "logore",
   data() {
     return {
       ore: [],
-      online:null
-    }
+      online: null,
+    };
   },
   methods: {
-   selectItem(id){
+    selectItem(id) {
       console.log(id);
-      this.$emit('select',id,this.type)
+      this.$emit("select", id, this.type);
     },
-    go(){
-      this.$router.push('/MyMusic')
-    }
+    go() {
+      this.$router.push("/MyMusic");
+    },
   },
-    props: {
+  props: {
     personalized: {
       type: Array,
       default: () => [],
       required: true,
     },
-    title:{
-      type:String,
-      default:'',
-      required:true
+    title: {
+      type: String,
+      default: "",
+      required: true,
     },
-    type:{
-      type:String,
-      default:"",
-      required:true
-    }
-   
+    type: {
+      type: String,
+      default: "",
+      required: true,
+    },
   },
-  async created () {
-     let user = localStorage.getItem('cookies');
-     let pro = localStorage.getItem('profile')
-     this.online = user
+  async created() {
+    let user = localStorage.getItem("cookies");
+    let pro = localStorage.getItem("profile");
+    this.online = user;
+    if (user) {
       await getSong().then((data) => {
-        //  console.log(data);
+        console.log(data);
         //  this.ore = data.recommend
-       })
-       let dont = await getSong()
-       localStorage.setItem('?',JSON.stringify(dont))
-     let a =   localStorage.getItem('?')
-     console.log(JSON.parse(a));
-     if(pro !== null){
-       await getSong().then((data) => {
-        //  console.log(data);
-         this.ore = data.recommend
-       })
-     }
+      });
+    }
+    // let dont = await getSong();
+    // // console.log();
+    // localStorage.setItem("?", JSON.stringify(dont));
+    // let a = localStorage.getItem("?");
+    // console.log(JSON.parse(a));
+    // if (pro !== null) {
+    //   await getSong().then((data) => {
+    //     //  console.log(data);
+    //     this.ore = data.recommend;
+    //   });
+    // }
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.poi{
+.poi {
   width: 100%;
   display: flex;
   justify-content: space-between;
   span {
-      padding: 2px 10px;
-      display: inline;
-      border: 1px solid black;
-      border-radius: 20px;
-      font-size: 15px;
-    }
+    padding: 2px 10px;
+    display: inline;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-size: 15px;
+  }
 }
-.qwe{
+.qwe {
   width: 90%;
   height: 300px;
   // background: pink;
@@ -116,7 +118,7 @@ export default {
   align-items: center;
   margin-top: 60px;
   flex-direction: column;
-  span{
+  span {
     // font-size: 20px;
   }
 }

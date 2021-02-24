@@ -14,6 +14,7 @@
         <i
           class="iconfont  ppp"
           @click="isplay"
+          @keydown.enter="isplay"
           v-show="!this.isPlaying"
         ></i>
         <i

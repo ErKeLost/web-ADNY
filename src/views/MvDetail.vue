@@ -74,7 +74,7 @@
     <div class="do">
       <mvComment :comment="mvComment"></mvComment>
     </div>
-    <router-view v-if="isRouterAlive"></router-view>
+    <router-view :key="randomId"></router-view>
   </div>
 </template>
 
@@ -120,10 +120,10 @@ export default {
     });
   },
   mounted() {
-    window.addEventListener("scroll", this.scrolltoTop);
+    // window.addEventListener("scroll", this.scrolltoTop);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.scrolltoTop);
+    // window.removeEventListener("scroll", this.scrolltoTop);
   },
   methods: {
     async selectMv(id) {
@@ -138,18 +138,18 @@ export default {
       this.$router.push({
         path: `/Mv/MvDetail/${id}`,
       });
-      this.$router.go(0);
+      // this.$router.go(0);
 // 
-        let timer = setInterval(() => {
-        let speed = Math.floor(-this.scrollTop / 5);
-        document.documentElement.scrollTop = document.body.scrollTop =
-          this.scrollTop + speed;
-          // console.log(this.scrollTop);
-          // console.log(speed);
-        if (this.scrollTop === 0) {
-          clearInterval(timer);
-        }
-      }, 10);
+      //   let timer = setInterval(() => {
+      //   let speed = Math.floor(-this.scrollTop / 5);
+      //   document.documentElement.scrollTop = document.body.scrollTop =
+      //     this.scrollTop + speed;
+      //     // console.log(this.scrollTop);
+      //     // console.log(speed);
+      //   if (this.scrollTop === 0) {
+      //     clearInterval(timer);
+      //   }
+      // }, 10);
       // console.log(id);
       //页面刷新的方式
       // Location.reload()
@@ -159,13 +159,13 @@ export default {
       // });
     
     },
-    scrolltoTop() {
-      let scrollDis =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      this.scrollTop = scrollDis;
-    },
+    // scrolltoTop() {
+    //   let scrollDis =
+    //     window.pageYOffset ||
+    //     document.documentElement.scrollTop ||
+    //     document.body.scrollTop;
+    //   this.scrollTop = scrollDis;
+    // },
   },
   
 };

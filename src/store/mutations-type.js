@@ -20,6 +20,8 @@ export const MV_DATA = 'MV_DATA'
 export const COMMENT_DATA = 'COMMENT_DATA'
 //mvpinglun
 export const COMMENT_MV = 'COMMENT_MV'
+//搜索消失
+export const SEA = 'SEA'
 
 
 

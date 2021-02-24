@@ -73,7 +73,13 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-import { getTop, getTopData, getPlayList, getSongDetail, getMusicComment } from "../api/index";
+import {
+  getTop,
+  getTopData,
+  getPlayList,
+  getSongDetail,
+  getMusicComment,
+} from "../api/index";
 export default {
   name: "TopDetail",
   data() {
@@ -85,7 +91,7 @@ export default {
       st: "",
       song: [],
       third: [],
-      comment:{}
+      comment: {},
     };
   },
   async created() {
@@ -116,7 +122,7 @@ export default {
       this.third = data.songs.splice(0, 3);
     });
   },
-    mounted() {
+  mounted() {
     window.addEventListener("scroll", this.scrollToTop);
   },
   destroyed() {
@@ -128,39 +134,41 @@ export default {
       "setMiniPlayer",
       "setFullPlayer",
       "setSongDetail",
-      'setCoData',
-      'setMvComment'
+      "setCoData",
+      "setMvComment",
     ]),
-    mv(id) {
+    async mv(id) {
       this.$router.push({
         path: `/Mv/MvDetail/${id}`,
       });
-      this.setMvComment(id)
-      setTimeout(() => {
+      await this.setMvComment(id);
+
+      await setTimeout(() => {
         this.$router.go(0);
-      }, 500);
-        let timer = setInterval(() => {
-        let ispeed = Math.floor(-this.scrollTop / 5);
-        // console.log(this.scrollTop);
-        // console.log(ispeed);
-        // console.log(that);
-        document.documentElement.scrollTop = document.body.scrollTop =this.scrollTop + ispeed;
-        if (this.scrollTop === 0) {
-          clearInterval(timer);
-        }
-      }, 1);
+      }, 200);
+      // let timer = setInterval(() => {
+      //   let ispeed = Math.floor(-this.scrollTop / 5);
+      //   // console.log(this.scrollTop);
+      //   // console.log(ispeed);
+      //   // console.log(that);
+      //   document.documentElement.scrollTop = document.body.scrollTop =
+      //     this.scrollTop + ispeed;
+      //   if (this.scrollTop === 0) {
+      //     clearInterval(timer);
+      //   }
+      // }, 1);
     },
-    scrollToTop() {
-      // let that = this;
-      let scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      this.scrollTop = scrollTop;
-    },
+    // scrollToTop() {
+    //   // let that = this;
+    //   let scrollTop =
+    //     window.pageYOffset ||
+    //     document.documentElement.scrollTop ||
+    //     document.body.scrollTop;
+    //   this.scrollTop = scrollTop;
+    // },
     play(id) {
       this.setIsPlaying(false);
-      this.setCoData([id])
+      this.setCoData([id]);
       this.$store.dispatch("setFullPlayer", true);
       // console.log("aa");
       // console.log(id);
@@ -169,11 +177,11 @@ export default {
       setTimeout(() => {
         this.setIsPlaying(true);
       }, 500);
-      getMusicComment({id:id}).then((data) => {
+      getMusicComment({ id: id }).then((data) => {
         // console.log(data);
-        this.comment = data
-        window.localStorage.setItem('comment',JSON.stringify(this.comment))
-      })
+        this.comment = data;
+        window.localStorage.setItem("comment", JSON.stringify(this.comment));
+      });
     },
     format(time) {
       let date = time;
@@ -198,8 +206,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.all{
-  background:transparent;
+.all {
+  background: transparent;
 }
 ul .po {
   height: 150px;

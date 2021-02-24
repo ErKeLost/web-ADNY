@@ -1,5 +1,5 @@
 <template>
-  <div class="header" :class="{ act: currentIndex == 2 }" ref="aab" >
+  <div class="header" :class="{ act: currentIndex == 2 }" ref="aab"  @click.stop="dis">
     <div class="headerleft">
       <span class="allName">{{ name }}</span>
       <i class="iconfont icon-wangyiyunyinleclick" @click="changeTheme"></i>
@@ -15,7 +15,7 @@
         </span>
       </router-link>
     </div>
-    <div class="headercenter">
+    <div class="headercenter" >
       <div class="iu">
         <input
           type="text"
@@ -34,7 +34,7 @@
           v-if="flag == false"
         ></i>
       </div>
-      <div class="search right" v-show="temp == true">
+      <div class="search right" v-show="temp == true" v-if="sea">
         <ul class="" v-show="keywords === ''">
           <!-- <li class="gang">
             <span class="r"
@@ -108,7 +108,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import adny from 'adny'
+import { mapGetters, mapActions, mapState } from "vuex";
 import { TimelineLite } from "gsap";
 import {
   getSearch,
@@ -209,10 +210,14 @@ export default {
       "setSongDetail",
       'setMvComment',
       "setTop",
+      'setSea'
     ]),
+    dis(){
+      this.setSea(false)
+    },
     close(){
     this.flag = false
-    this.temp = false
+    // this.temp = false
     },
     Song(word) {
       this.keywords = word;
@@ -250,16 +255,17 @@ export default {
       }, 500);
     },
     async check() {
-      await getSearch({ keywords: this.keywords }).then((data) => {
-        // console.log(data);
-      });
+      // await getSearch({ keywords: this.keywords }).then((data) => {
+      //   // console.log(data);
+      // });
       //  await getMvData({mvid:this.sear.mv}).then((data) => {
       //    console.log(data);
       //  })
+      this.setSea(true)
     },
     async search() {
       await getSearch({ keywords: this.keywords }).then((data) => {
-        // console.log(data);
+        console.log(data);
         this.sear = data.result.songs;
         data.result.songs.forEach((i) => {
           console.log(i.mv);
@@ -305,6 +311,8 @@ export default {
       if (this.currentIndex == 4) {
         this.$router.push("/Top/TopDetail/19723756");
         // this.setTop()
+      }if(this.currentIndex == 5 ){
+        this.$router.push('/Down')
       }
     },
     changeTheme() {
@@ -346,6 +354,13 @@ export default {
     login() {
       this.$router.push("/LogIn");
     },
+  },
+  created () {
+    console.log("aaaa");
+    console.log(adny.dimension([1,2,3,4,5,6],2));
+  },
+  computed: {
+    ...mapState(['sea'])
   },
 };
 </script>

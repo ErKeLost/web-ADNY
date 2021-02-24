@@ -27,7 +27,8 @@
         </li>
       </ul>
     </div>
-    <router-view></router-view>
+    <router-view :key="randomId"></router-view>
+    
   </div>
 </template>
 
@@ -50,7 +51,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['mvComment'])
+    ...mapState(['mvComment']),
+    randomId () {
+      return this.$route.fullPath + new Date()
+    }
   },
   async created() {
     await getMv().then((data) => {
@@ -67,10 +71,10 @@ export default {
     });
   },
   mounted() {
-    window.addEventListener("scroll", this.scrollToTop);
+    // window.addEventListener("scroll", this.scrollToTop);
   },
   destroyed() {
-    window.removeEventListener("scroll", this.scrollToTop);
+    // window.removeEventListener("scroll", this.scrollToTop);
   },
 
   methods: {
@@ -100,16 +104,16 @@ export default {
       // console.log(id);
       // console.log(e.scrollTop);
       // let that = this;
-      let timer = setInterval(() => {
-        let ispeed = Math.floor(-this.erke / 5);
-        // console.log(this.scrollTop);
-        // console.log(ispeed);
-        // console.log(that);
-        document.documentElement.scrollTop = document.body.scrollTop =this.erke + ispeed;
-        if (this.scrollTop === 0) {
-          clearInterval(timer);
-        }
-      }, 1);
+      // let timer = setInterval(() => {
+      //   let ispeed = Math.floor(-this.erke / 5);
+      //   // console.log(this.scrollTop);
+      //   // console.log(ispeed);
+      //   // console.log(that);
+      //   document.documentElement.scrollTop = document.body.scrollTop =this.erke + ispeed;
+      //   if (this.erke === 0) {
+      //     clearInterval(timer);
+      //   }
+      // }, 1);
     },
     scrollToTop() {
       // let that = this;

@@ -13,5 +13,6 @@ export default{
   mvPlaying:false,
   isComment:false,
   commentData:[],
-  mvComment:[]
+  mvComment:[],
+  sea:true
 }

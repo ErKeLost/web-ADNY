@@ -4,7 +4,7 @@
       <Header></Header>
     </keep-alive>
     <keep-alive exclude="MyMusic,LogIn,Friend">
-      <router-view></router-view>
+      <router-view :key="randomId"></router-view>
     </keep-alive>
     <Player></Player>
   </div>
@@ -18,6 +18,11 @@ export default {
     Header,
     Player,
   },
+  computed:{
+    randomId () {
+      return this.$route.fullPath + new Date()
+    }
+  }
 };
 </script>
 <style lang="scss">

@@ -10,7 +10,7 @@ import "fullpage.js/vendors/scrolloverflow";
 import VueFullPage from "vue-fullpage.js";
 import infiniteScroll from "vue-infinite-scroll";
 Vue.config.productionTip = false;
-
+// Vue.config.silent = false
 Vue.use(infiniteScroll);
 Vue.use(ElementUI);
 Vue.use(VueFullPage);

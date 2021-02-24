@@ -11,7 +11,8 @@ import {
   SET_CUR_TIME,
   SET_INDEX,
   MV_DATA,
-  COMMENT_MV
+  COMMENT_MV,
+  SEA
 } from './mutations-type'
 export default {
   //   changeFullPlayer(state,flag){
@@ -65,5 +66,8 @@ export default {
   },
   [COMMENT_MV](state,list){
     state.mvComment = list
+  },
+  [SEA](state,flag){
+    state.sea = flag
   }
 }

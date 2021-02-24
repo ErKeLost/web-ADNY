@@ -48,6 +48,11 @@ const TopDetail = (resolve) => {
     resolve(moduel)
   })
 }
+const Down = (resolve) =>{
+  import('../views/Down').then((module) => {
+    resolve(module)
+  })
+}
 
 Vue.use(VueRouter)
 
@@ -94,6 +99,10 @@ const routes = [
         component:MvDetail
       }
     ]
+  },
+  {
+    path:'/Down',component:Down,
+
   }
 ]
 
